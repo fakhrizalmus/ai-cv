@@ -2,46 +2,37 @@
 
 import { useState } from "react";
 
-import ReceiptUploader from "@/components/ReceiptUploader";
-import ReceiptResult from "@/components/ReceiptResult";
-
-import { Receipt } from "@/types/receipt";
+import CvUploader from "@/components/CvUploader";
+import CvResult from "@/components/CvResult";
+import { CvAnalysis } from "@/types/cv";
 
 export default function Home() {
 
-  const [receipt, setReceipt] =
-    useState<Receipt | null>(null);
+  const [result, setResult] = useState<CvAnalysis | null>(null);
 
 
   return (
-    <main className="min-h-screen bg-gray-100 px-4 py-10">
+    <main className="min-h-screen bg-slate-50 px-4 py-10">
 
       <div className="mx-auto max-w-4xl">
 
         <div className="mb-8 text-center">
 
           <h1 className="text-4xl font-bold text-gray-900">
-            AI Nota
+            Analyze CV ATS
           </h1>
 
           <p className="mt-2 text-gray-600">
-            Upload foto nota dan biarkan AI
-            membaca transaksi secara otomatis.
+            Upload CV dan dapatkan review ATS-friendly yang jelas dan actionable.
           </p>
 
         </div>
 
 
-        <ReceiptUploader
-          onResult={setReceipt}
-        />
+        <CvUploader onResult={setResult} />
 
 
-        {receipt && (
-          <ReceiptResult
-            receipt={receipt}
-          />
-        )}
+        {result && <CvResult result={result} />}
 
       </div>
 
